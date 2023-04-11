@@ -5,7 +5,7 @@ pipeline {
         string(name: 'PRENOM', description: 'Veusilez indiquer votre prenom')
         password(name: 'SONAR_SERVER_PWD', description: 'entrer votre mdp sonar')
         choice(nane: 'MOIS', choices: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'], description: 'choisir le mois')
-        choice(name: 'DATE DU_JOUR', choices: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18°, '19', '20', '21', '22', '23', '24', '25', '26')
+        choice(name: 'DATE DU_JOUR', choices: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18°, '19', '20', '21', '22', '23', '24', '25', '26'])
         choice(name: 'CHALLENGES', choices: ["Janvier | Redigen et garder precieusement un journal intime", "Janvier | Prendre du temps pour ecrire"])
 }
 stages {
