@@ -1,23 +1,49 @@
 pipeline {
     agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Construction du pipeline'
-            }
-        }
-        
-        stage('Test') {
-            steps {
-                echo 'Tester le pipeline'
-            }
-        }
-        
-        stage('Deploy') {
-            steps {
-                echo 'Deploiement du pipeline'
-            }
+    parameters {
+        string(name: 'NOM', description: 'veulilez indiquer votre nom')
+        string(name: 'PRENOM', description: 'Veusilez indiquer votre prenom')
+        password(name: 'SONAR_SERVER_PWD', description: 'entrer votre mdp sonar')
+        choice(nane: 'MOIS', choices: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'], description: 'choisir le mois')
+        choice(name: 'DATE DU_JOUR', choices: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18°, '19', '20', '21', '22', '23', '24', '25', '26')
+        choice(name: 'CHALLENGES', choices: ["Janvier | Redigen et garder precieusement un journal intime", "Janvier | Prendre du temps pour ecrire"])
+}
+stages {
+    stage ('Formulaire') {
+        steps {
+            script {
+                def prenon = "${params.PRENOM}"
+                def nom = "${params.NOM}"
+                def password = "${params.SONAR_SERVER_PWD}"
+            
+                echo "Bonjour $prenom, bienvenue sur notre application qui va vous permettre de réaliser vos souhaits
+                sleep 10
         }
     }
 }
+stage ('Janvier') {
+    steps {
+        script {
+            def challenges = "${params.CHALLENGES}"
+            def today = "${params.DATE_DU_JOUR}"
+            def mois = "${params.MOIS}"
+            
+            if (mois == "Janvier" && today == '1') {
+                challenges = "Prendre du temps pour écrire, Rédiger et garder précisement un journal intime"
+                echo "Bienvenue au mois de $mois"
+                echo "Voici les challenges possibles : Schallenges"
+                sleep 10
+            }
+            else if (mois == "Janvier" && today › '1' && today <= '20') {
+                echo "Attention, nous sommes le $today du mois, il ne vous reste plus beaucoup de temps pour faire vos objectifs."
+                sleep 10
+            }
+            else if (mois == "Janvier" && today == '31') {
+                echo "Avancement 100%"
+                echo "Felicitation vous avez accompli tous vos challenges du mois en cours."
+                sleep 10
+            }
+         }
+      }
+   }
+stage ('Fevrier') {
