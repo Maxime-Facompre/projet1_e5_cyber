@@ -31,7 +31,7 @@ stage ('Janvier') {
             if (mois == "Janvier" && today == '1') {
                 challenges = "Prendre du temps pour écrire, Rédiger et garder précisement un journal intime"
                 echo "Bienvenue au mois de $mois"
-                echo "Voici les challenges possibles : Schallenges"
+                echo "Voici les challenges possibles : $challenges"
                 sleep 10
             }
             else if (mois == "Janvier" && today > '1' && today <= '20') {
