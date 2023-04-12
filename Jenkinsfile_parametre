@@ -16,7 +16,7 @@ parameters {
 }
 
 stages {
-    stage ('Formulaire') {
+    stage ('Inscription') {
         steps {
             script {
                 def prenon = "${params.PRENOM}"
