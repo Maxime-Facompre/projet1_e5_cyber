@@ -1,22 +1,27 @@
 pipeline {
-    agent any
-    parameters {
-        string(name: 'NOM', description: 'veulilez indiquer votre nom')
-        string(name: 'PRENOM', description: 'Veusilez indiquer votre prenom')
-        password(name: 'SONAR_SERVER_PWD', description: 'entrer votre mdp sonar')
-        choice(name: 'MOIS', choices: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'], description: 'choisir le mois')
-        choice(name: 'DATE_DU_JOUR', choices: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26'])
-        choice(name: 'CHALLENGES', choices: ["Janvier | Redigen et garder precieusement un journal intime", "Janvier | Prendre du temps pour ecrire"])
+
+  agent any
+
+parameters {
+
+  string(name: 'NOM', description: 'Indiquez votre nom')
+
+  string(name: 'PRENOM', description: 'Indiquez votre prenom')
+
+  choice(name:'MOIS_EN_COURS', choices: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'], description: 'Selectionnez le mois actuel')
+
+  string(name:'DATE', description : 'Indiquez la date du jour (Si 2 janvier ecrire 2)')
+
+  choice(name: 'CHALLENGES_RESOLUTIONS', choices: ["Janvier : Faire un grand nettoyage", "Janvier : Se debarasser des objets inutiles", "Fevrier : Apprendre un instrument", "Fevrier : Apprendre le solfege", "Mars : Lire un livre", "Mars : Aller voir un film au cinema", "Avril : Essayer de stopper ses addictions", "Avril : Commencer a faire du jogging", "Mai : Passer du temps avec ses proches", "Mai : Apprendre un sport", "Juin : Ecrire un livre", "Juin : Se reposer", "Juillet : Faire la fete", "Juillet : Visiter le monde", "Aout : Profiter de son entourage", "Aout : Prendre du temps pour soi", "Septembre : Redoubler d'efforts", "Septembre : Se coucher plus tot", "Octobre : Optimiser ses journees", "Octobre : Prendre des vacances", "Novembre : Faire des economies", "Novembre : Apprendre de nouvelles competences", "Decembre : Faire des sorties", "Decembre : Demander une augmentation"], description: 'Selectionnez votre challenge')
 }
+
 stages {
     stage ('Formulaire') {
         steps {
             script {
                 def prenon = "${params.PRENOM}"
                 def nom = "${params.NOM}"
-                def password = "${params.SONAR_SERVER_PWD}"
-            
-                echo "Bonjour $prenom, bienvenue sur notre application qui va vous permettre de réaliser vos souhaits"
+                echo "$prenom, bienvenue sur l'application qui va vous permettre de realiser vos souhaits"
                 sleep 10
         }
     }
@@ -24,27 +29,266 @@ stages {
 stage ('Janvier') {
     steps {
         script {
-            def challenges = "${params.CHALLENGES}"
-            def today = "${params.DATE_DU_JOUR}"
-            def mois = "${params.MOIS}"
-            
+            def challenges = "${params.CHALLENGES_RESOLUTIONS}"
+            def today = "${params.DATE}"
+            def mois = "${params.MOIS_EN_COURS}"
+
             if (mois == "Janvier" && today == '1') {
-                challenges = "Prendre du temps pour écrire, Rédiger et garder précisement un journal intime"
-                echo "Bienvenue au mois de $mois"
-                echo "Voici les challenges possibles : $challenges"
-                sleep 10
-            }
-            else if (mois == "Janvier" && today > '1' && today <= '20') {
-                echo "Attention, nous sommes le $today du mois, il ne vous reste plus beaucoup de temps pour faire vos objectifs."
-                sleep 10
+                challenges = "Faire un grand nettoyage, Se debarasser des objets inutiles"
+                echo "Nous sommes en $mois"
+                echo "challenges disponibles ce mois : $challenges"
+                sleep 5
             }
             else if (mois == "Janvier" && today == '31') {
-                echo "Avancement 100%"
-                echo "Felicitation vous avez accompli tous vos challenges du mois en cours."
-                sleep 10
+                echo "Challenge du mois termine"
+                echo "Le mois est termine ! Bravo pour avoir accompli tous vos challenges !"
+                sleep 5
             }
          }
-      }
-}
+       }
+     }
+
+stage ('Fevrier') {
+    steps {
+        script {
+            def challenges = "${params.CHALLENGES_RESOLUTIONS}"
+            def today = "${params.DATE}"
+            def mois = "${params.MOIS_EN_COURS}"
+
+            if (mois == "Fevrier" && today == '1') {
+                challenges = "Apprendre un instrument, Apprendre le solfege"
+                echo "Nous sommes en $mois"
+                echo "challenges disponibles ce mois : $challenges"
+                sleep 5
+            }
+            else if (mois == "Fevrier" && today == '28') {
+                echo "Challenge du mois termine"
+                echo "Le mois est termine ! Bravo pour avoir accompli tous vos challenges !"
+                sleep 5
+            }
+         }
+       }
+     }  
+
+stage ('Mars') {
+    steps {
+        script {
+            def challenges = "${params.CHALLENGES_RESOLUTIONS}"
+            def today = "${params.DATE}"
+            def mois = "${params.MOIS_EN_COURS}"
+
+            if (mois == "Mars" && today == '1') {
+                challenges = "Lire un livre, Aller voir un film au cinema"
+                echo "Nous sommes en $mois"
+                echo "challenges disponibles ce mois : $challenges"
+                sleep 5
+            }
+            else if (mois == "Mars" && today == '31') {
+                echo "Challenge du mois termine"
+                echo "Le mois est termine ! Bravo pour avoir accompli tous vos challenges !"
+                sleep 5
+            }
+         }
+       }
+     }  
+
+stage ('Avril') {
+    steps {
+        script {
+            def challenges = "${params.CHALLENGES_RESOLUTIONS}"
+            def today = "${params.DATE}"
+            def mois = "${params.MOIS_EN_COURS}"
+
+            if (mois == "Avril" && today == '1') {
+                challenges = "Essayer de stopper ses addictions, Commencer a faire du jogging"
+                echo "Nous sommes en $mois"
+                echo "challenges disponibles ce mois : $challenges"
+                sleep 5
+            }
+            else if (mois == "Avril" && today == '30') {
+                echo "Challenge du mois termine"
+                echo "Le mois est termine ! Bravo pour avoir accompli tous vos challenges !"
+                sleep 5
+            }
+         }
+       }
+     }  
+
+
+stage ('Mai') {
+    steps {
+        script {
+            def challenges = "${params.CHALLENGES_RESOLUTIONS}"
+            def today = "${params.DATE}"
+            def mois = "${params.MOIS_EN_COURS}"
+
+            if (mois == "Mai" && today == '1') {
+                challenges = "Passer du temps avec ses proches, Apprendre un sport"
+                echo "Nous sommes en $mois"
+                echo "challenges disponibles ce mois : $challenges"
+                sleep 5
+            }
+            else if (mois == "Mai" && today == '31') {
+                echo "Challenge du mois termine"
+                echo "Le mois est termine ! Bravo pour avoir accompli tous vos challenges !"
+                sleep 5
+            }
+         }
+       }
+     }  
+
+stage ('Juin') {
+    steps {
+        script {
+            def challenges = "${params.CHALLENGES_RESOLUTIONS}"
+            def today = "${params.DATE}"
+            def mois = "${params.MOIS_EN_COURS}"
+
+            if (mois == "Juin" && today == '1') {
+                challenges = "Ecrire un livre, Se reposer"
+                echo "Nous sommes en $mois"
+                echo "challenges disponibles ce mois : $challenges"
+                sleep 5
+            }
+            else if (mois == "Juin" && today == '30') {
+                echo "Challenge du mois termine"
+                echo "Le mois est termine ! Bravo pour avoir accompli tous vos challenges !"
+                sleep 5
+            }
+         }
+       }
+     }  
+
+stage ('Juillet') {
+    steps {
+        script {
+            def challenges = "${params.CHALLENGES_RESOLUTIONS}"
+            def today = "${params.DATE}"
+            def mois = "${params.MOIS_EN_COURS}"
+
+            if (mois == "Juillet" && today == '1') {
+                challenges = "Faire la fete, Visiter le monde"
+                echo "Nous sommes en $mois"
+                echo "challenges disponibles ce mois : $challenges"
+                sleep 5
+            }
+            else if (mois == "Juillet" && today == '31') {
+                echo "Challenge du mois termine"
+                echo "Le mois est termine ! Bravo pour avoir accompli tous vos challenges !"
+                sleep 5
+            }
+         }
+       }
+     }  
+
+stage ('Aout') {
+    steps {
+        script {
+            def challenges = "${params.CHALLENGES_RESOLUTIONS}"
+            def today = "${params.DATE}"
+            def mois = "${params.MOIS_EN_COURS}"
+
+            if (mois == "Aout" && today == '1') {
+                challenges = "Profiter de son entourage, Prendre du temps pour soi"
+                echo "Nous sommes en $mois"
+                echo "challenges disponibles ce mois : $challenges"
+                sleep 5
+            }
+            else if (mois == "Aout" && today == '31') {
+                echo "Challenge du mois termine"
+                echo "Le mois est termine ! Bravo pour avoir accompli tous vos challenges !"
+                sleep 5
+            }
+         }
+       }
+     }  
+
+stage ('Septembre') {
+    steps {
+        script {
+            def challenges = "${params.CHALLENGES_RESOLUTIONS}"
+            def today = "${params.DATE}"
+            def mois = "${params.MOIS_EN_COURS}"
+
+            if (mois == "Septembre" && today == '1') {
+                challenges = "Redoubler d'efforts, Se coucher plus tot"
+                echo "Nous sommes en $mois"
+                echo "challenges disponibles ce mois : $challenges"
+                sleep 5
+            }
+            else if (mois == "Septembre" && today == '30') {
+                echo "Challenge du mois termine"
+                echo "Le mois est termine ! Bravo pour avoir accompli tous vos challenges !"
+                sleep 5
+            }
+         }
+       }
+     }  
+
+stage ('Octobre') {
+    steps {
+        script {
+            def challenges = "${params.CHALLENGES_RESOLUTIONS}"
+            def today = "${params.DATE}"
+            def mois = "${params.MOIS_EN_COURS}"
+
+            if (mois == "Octobre" && today == '1') {
+                challenges = "Optimiser ses journees, Prendre des vacances"
+                echo "Nous sommes en $mois"
+                echo "challenges disponibles ce mois : $challenges"
+                sleep 5
+            }
+            else if (mois == "Octobre" && today == '31') {
+                echo "Challenge du mois termine"
+                echo "Le mois est termine ! Bravo pour avoir accompli tous vos challenges !"
+                sleep 5
+            }
+         }
+       }
+     }  
+
+stage ('Novembre') {
+    steps {
+        script {
+            def challenges = "${params.CHALLENGES_RESOLUTIONS}"
+            def today = "${params.DATE}"
+            def mois = "${params.MOIS_EN_COURS}"
+
+            if (mois == "Novembre" && today == '1') {
+                challenges = "Faire des economies, Apprendre de nouvelles competences"
+                echo "Nous sommes en $mois"
+                echo "challenges disponibles ce mois : $challenges"
+                sleep 5
+            }
+            else if (mois == "Novembre" && today == '30') {
+                echo "Challenge du mois termine"
+                echo "Le mois est termine ! Bravo pour avoir accompli tous vos challenges !"
+                sleep 5
+            }
+         }
+       }
+     }  
+
+stage ('Decembre') {
+    steps {
+        script {
+            def challenges = "${params.CHALLENGES_RESOLUTIONS}"
+            def today = "${params.DATE}"
+            def mois = "${params.MOIS_EN_COURS}"
+
+            if (mois == "Decembre" && today == '1') {
+                challenges = "Faire des sorties, Demander une augmentation"
+                echo "Nous sommes en $mois"
+                echo "challenges disponibles ce mois : $challenges"
+                sleep 5
+            }
+            else if (mois == "Decembre" && today == '31') {
+                echo "Challenge du mois termine"
+                echo "Le mois est termine ! Bravo pour avoir accompli tous vos challenges !"
+                sleep 5
+            }
+         }
+       }
+     }  
 }
 }
