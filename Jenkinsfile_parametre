@@ -15,32 +15,46 @@ parameters {
 }
 
 stages {
-    stage('Printing Parameters') {
+    stage('Printing Parameters to set the app') {
         steps {
             script {
             def prenon = "${params.PRÉNOM}"
             def nom = "${params.NOM}"
-            echo "Bonjour ${params.NOM} ${params.PRÉNOM}."
+            echo "Bonjour ${params.NOM} ${params.PRÉNOM} bienvenue sur PILLOW."
             echo "Vous etes un(e) ${params.GENRE}."
-            echo "Vous êtes né(e) le ${params.DATE}, vous avez ${params.AGE} ans."
+            echo "Vous êtes né(e) le ${params.DATE}, et vous avez ${params.AGE} ans."
             }
         }
     }
 
-    stage('BUILD') {
+ stage('Data') {
             steps {
-                echo 'Developpement'
+                echo "Connexion à l'apple Watch en cours..."
+                sleep 3
+                echo "Connexion réussie"
+                sleep 3
+                echo "Calcule en cours de la fréquence cardiaque..."
+                sleep 5
+                echo "Analyse des mouvements et micro de l'apple Watch..."
+                sleep 3
+                echo "Analyse en cours des différentes phases de sommeil en fonction des données collectées..."
+                sleep 5
+                echo "Analyses terminées"
             }
         }
-        stage('Test') {
+
+stage('Création du diagrammes en fonction des données récoltées') {
             steps {
-                echo 'Testing'
+                echo "Connexion à l'apple Watch..."
+                sleep 3
+                echo "Récupérations des données de l'apple Watch..."
+                sleep 3
+                echo "Création du diagramme..."
+                sleep 5 
+                echo "Diagramme crée."
+                sleep 3 
+                echo "Voici vôtre diagramme avec votre cycle de sommeils et votre moyenne de rythme cardiaque."
             }
-        }
-        stage('DEPLOY') {
-            steps {
-                echo 'Mise en Production'
-            }
-        }
-    }
+        }   
+}
 }
