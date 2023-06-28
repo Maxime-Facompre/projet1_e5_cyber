@@ -17,11 +17,13 @@ parameters {
 stages {
     stage('Printing Parameters') {
         steps {
+            script {
             def prenon = "${params.PRÉNOM}"
             def nom = "${params.NOM}"
             echo "Bonjour ${params.NOM} ${params.PRÉNOM}."
             echo "Vous etes un(e) ${params.GENRE}."
             echo "Vous êtes né(e) le ${params.DATE}, vous avez ${params.AGE} ans."
+            }
         }
     }
 
