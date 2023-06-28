@@ -1,12 +1,19 @@
 pipeline {
-agent any
+    agent any
+
 parameters {
-string(name: 'NAME', description: 'Nom ?')
-string(name: 'FIRSTNAME', description: 'Prénom ?')
-choice(name: 'GENDER', choices: ['Homme', 'Femme'], description: 'Sexe ?')
-string(name: 'DATE', description: 'Date de naissance ?')
-string(name: 'AGE', description: 'Age ?')
+
+    string(name: 'NOM', description: 'Quelle est vôtre Nom ?')
+
+    string(name: 'PRÉNOM', description: 'Quelle est vôtre Prénom ?')
+
+    choice(name: 'GENRE', choices: ['Homme', 'Femme'], description: 'Quelle est votreSexe ?')
+
+    string(name: 'DATE', description: 'Entrez votre date de naissance :')
+
+    string(name: 'AGE', description: 'Quelle âge aveez vous ?')
 }
+
 stages {
     stage('Printing Parameters') {
         steps {
